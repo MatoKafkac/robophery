@@ -20,10 +20,11 @@
 # THE SOFTWARE.
 from __future__ import division
 import math
-from robophery.interface.pwm import PwmInterface
+#from robophery.interface.pwm import PwmInterface
 
 
-class Pca9685PwmInterface(PwmInterface):
+#class Pca9685PwmInterface(PwmInterface):
+class Pca9685PwmInterface(object):
     """
     PWM implementation for the PCA9685 PWM LED/servo controller.
     """
@@ -55,12 +56,16 @@ class Pca9685PwmInterface(PwmInterface):
     OUTDRV = 0x04
 
     def __init__(self, *args, **kwargs):
-        self._parent_interface = kwargs['parent']['interface']
-        self._parent_address = kwargs['parent']['address']
-        self._parent_interface.setup_addr(self._parent_address)
+        #self._parent_interface = kwargs['parent']['interface']
+        #self._parent_address = kwargs['parent']['address']
+        import Adafruit_GPIO.I2C as I2C
+        i2c = I2C
+        self._parent_interface = i2c.get_i2c_device(0x40, busnum=2, **kwargs)
+        self._parent_address = 0x40
+        #self._parent_interface.setup_addr(self._parent_address)
         self._pins_available = self.AVAILABLE_PINS
         self._frequency = None
-        super(Pca9685PwmInterface, self).__init__(*args, **kwargs)
+        #super(Pca9685PwmInterface, self).__init__(*args, **kwargs)
         self.set_all_duty_cycle(0)
         self._parent_interface.write8(
             self._parent_address, self.MODE2, self.OUTDRV)
