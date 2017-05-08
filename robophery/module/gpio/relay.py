@@ -18,6 +18,10 @@ class RelayModule(GpioModule):
         self.setup_pin(self._pin, self.GPIO_MODE_OUT)
         self.set_low(self._pin)
 
+    def _normalize_pin(self, pin):
+        value = pin
+        return value
+
     def commit_action(self, action):
         if action == 'read_data':
             return self.read_data()

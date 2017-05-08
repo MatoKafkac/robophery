@@ -45,7 +45,7 @@ class BeagleboneGpioInterface(GpioInterface):
             pull_up_down = self.GPIO_PUD_OFF
         self._bus.setup(pin, self._dir_mapping[mode],
                         pull_up_down=self._pud_mapping[pull_up_down])
-        self._use_pin(pin)
+        #self._use_pin(pin)
 
     def output(self, pin, value):
         self._bus.output(pin, value)

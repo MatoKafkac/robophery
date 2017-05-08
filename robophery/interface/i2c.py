@@ -51,7 +51,7 @@ class I2cInterface(Interface):
         super(I2cInterface, self).__init__(*args, **kwargs)
 
     def __str__(self):
-        return "%s (bus number: %s)" % (self._base_name(), self._busnum)
+        return "%s (bus number: %s)" % (self._base_name(), self._bus_number)
 
     def setup_addr(self, addr):
         """

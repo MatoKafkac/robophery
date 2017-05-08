@@ -24,6 +24,10 @@ class SwitchModule(GpioModule):
             self._runtime_start = None
             self._state = 0
 
+    def _normalize_pin(self, pin):
+        value = pin
+        return value
+
     def _process_event(self, pin):
         if self.is_high(pin):
             self._state = 1

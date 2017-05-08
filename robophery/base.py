@@ -12,6 +12,41 @@ try:
 except Exception:
     pass
 
+c = {
+    'log_level': 'debug',
+    'read_interval': 2000,
+    'platform': 'bbb',
+    'config': {
+        'comm': {},
+        'module': {
+            'switch_1': {
+                'interface': 'local_gpio',
+                'class': 'robophery.module.gpio.switch.SwitchModule',
+                'data_pin': 'P9_42'
+            }, 
+            'relay_1': {
+                'interface': 'local_gpio',
+                'class': 'robophery.module.gpio.relay.RelayModule',
+                'data_pin': 'P9_41'
+            },
+            'bh1750': {
+                'interface': 'local_i2c',
+                'class': 'robophery.module.i2c.bh1750.Bh1750Module',
+            } 
+        },
+        'interface': {
+            'local_gpio': {
+                'class': 'robophery.platform.bbb.gpio.BeagleboneGpioInterface',
+                'engine': 'gpio'
+            },
+            'local_i2c': {
+                'class': 'robophery.platform.linux.i2c.SMBusI2cInterface',
+                'engine': 'i2c',
+                'bus_number': 2
+            }
+        }
+     }
+}
 
 def list_avg(list):
     sum = 0
