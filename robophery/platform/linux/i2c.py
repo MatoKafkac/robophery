@@ -11,7 +11,6 @@ class SMBusI2cInterface(I2cInterface):
 
     def __init__(self, *args, **kwargs):
         self._bus_number = int(kwargs.get('bus_number', 1))
-        print("DEBUG-bus_number={0}".format(self._bus_number))
         self._bus = smbus.SMBus(self._bus_number)
         super(SMBusI2cInterface, self).__init__(*args, **kwargs)
 
